@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор нефрологических индексов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Калькулятор нефрологических индексов</h1>
+            <p class="subtitle">Молекулярно-клиническая оценка нефротического синдрома</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="section-header">
+                    <h2>Ввод данных пациента</h2>
+                    <button id="demo-data" class="demo-button">
+                        <i class="fas fa-flask"></i> Загрузить тестовые данные
+                    </button>
+                </div>
+                
+                <div class="input-groups">
+                    <div class="input-group">
+                        <h3>Основная информация</h3>
+                        <div class="input-field">
+                            <label for="gender">Пол:</label>
+                            <select id="gender">
+                                <option value="M">Мужской</option>
+                                <option value="F">Женский</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="age">Возраст (лет):</label>
+                            <input type="number" id="age" step="0.1" min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Клинические параметры</h3>
+                        <div class="input-field">
+                            <label for="creatinine">Креатинин (мг/дл):</label>
+                            <input type="number" id="creatinine" step="0.1" min="0" max="10">
+                        </div>
+                        <div class="input-field">
+                            <label for="proteinuria">Суточная протеинурия (г/сут):</label>
+                            <input type="number" id="proteinuria" step="0.1" min="0" max="20">
+                        </div>
+                        <div class="input-field">
+                            <label for="c3">C3 компонент комплемента (мг/дл):</label>
+                            <input type="number" id="c3" min="0" max="200">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Молекулярные маркеры</h3>
+                        <div class="input-field">
+                            <label for="nphs1">NPHS1 экспрессия:</label>
+                            <input type="number" id="nphs1" step="0.01" min="0" max="2">
+                        </div>
+                        <div class="input-field">
+                            <label for="wt1">WT1 экспрессия:</label>
+                            <input type="number" id="wt1" step="0.01" min="0" max="2">
+                        </div>
+                        <div class="input-field">
+                            <label for="il1b">IL1B экспрессия:</label>
+                            <input type="number" id="il1b" step="0.01" min="0" max="5">
+                        </div>
+                        <div class="input-field">
+                            <label for="tnfa">TNFα экспрессия:</label>
+                            <input type="number" id="tnfa" step="0.01" min="0" max="5">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="calculate" class="calculate-button">
+                    <i class="fas fa-calculator"></i> Рассчитать результаты
+                </button>
+            </div>
+
+            <div class="results-section">
+                <h2>Результаты анализа</h2>
+                <div class="results-content">
+                    <div class="results-grid">
+                        <div class="result-card" id="mgfr-card">
+                            <h3>Модифицированная СКФ</h3>
+                            <div class="result-value" id="mgfr-value">-</div>
+                            <div class="result-unit">мл/мин/1.73м²</div>
+                            <div class="result-interpretation" id="mgfr-interpretation"></div>
+                        </div>
+                        <div class="result-card" id="sri-card">
+                            <h3>Индекс стероидной резистентности</h3>
+                            <div class="result-value" id="sri-value">-</div>
+                            <div class="result-interpretation" id="sri-interpretation"></div>
+                        </div>
+                        <div class="result-card" id="ri-card">
+                            <h3>Индекс ремиссии</h3>
+                            <div class="result-value" id="ri-value">-</div>
+                            <div class="result-interpretation" id="ri-interpretation"></div>
+                        </div>
+                        <div class="result-card" id="ckdpi-card">
+                            <h3>Индекс прогрессирования</h3>
+                            <div class="result-value" id="ckdpi-value">-</div>
+                            <div class="result-interpretation" id="ckdpi-interpretation"></div>
+                        </div>
+                    </div>
+
+                    <div class="charts-container">
+                        <div class="chart-wrapper">
+                            <canvas id="molecularChart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="indexChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="detailed-report" id="detailed-report">
+                        <h3>Подробный клинический отчет</h3>
+                        <div class="report-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculators.js"></script>
+    <script src="charts.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
