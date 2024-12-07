@@ -3,35 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Display</title>
+    <title>Copy Text</title>
     <style>
         body {
-            font-family: "Courier New", Courier, monospace;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
         pre {
-            background-color: #222;
-            color: #fff;
-            padding: 15px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            padding: 10px;
+            font-family: "Courier New", Courier, monospace;
+            width: 100%;
+            max-width: 800px;
             overflow-x: auto;
+            margin-bottom: 10px;
             word-wrap: break-word;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Code Viewer</h1>
-    </header>
-    <main>
-        <pre>
-vless://180486f5-adaa-4839-b844-bd1a5044f29c@kutya.milennehaezlenne.ru:443?type=tcp&amp;security=reality&amp;pbk=ny9rtq1dqmLO6f33wZ36Ee0CJshGnSijfRRg_p_zFVM&amp;fp=chrome&amp;sni=cloudflare.com&amp;sid=ed71fdacdb&amp;spx=%2F&amp;flow=xtls-rprx-vision#ssss-boxtv
-        </pre>
-    </main>
-    <footer>
-        <p>&copy; 2024 Your Name</p>
-    </footer>
+    <pre id="text">
+vless://180486f5-adaa-4839-b844-bd1a5044f29c@kutya.milennehaezlenne.ru:443?type=tcp&security=reality&pbk=ny9rtq1dqmLO6f33wZ36Ee0CJshGnSijfRRg_p_zFVM&fp=chrome&sni=cloudflare.com&sid=ed71fdacdb&spx=%2F&flow=xtls-rprx-vision#ssss-boxtv
+    </pre>
+    <button onclick="copyText()">Copy Text</button>
+
+    <script>
+        function copyText() {
+            // Получаем текст из элемента <pre>
+            const text = document.getElementById('text').innerText;
+            // Копируем в буфер обмена
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy text: ' + err);
+            });
+        }
+    </script>
 </body>
 </html>
